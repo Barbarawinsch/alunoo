@@ -8,17 +8,21 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.Alunoo;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Administrador
  */
 public class DaoAlunoo {
      public static boolean inserir(Alunoo objeto) {
-        String sql = "INSERT INTO alunoo (sobrenome, nome) VALUES (?, ?)";
+        String sql = "INSERT INTO alunoo (sobrenome, nome, sexo) VALUES (?, ?, ?)";
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setString(1, objeto.getSobrenome());
             ps.setString(2, objeto.getNome());
+            ps.setString(3, objeto.getSexo());
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -30,6 +34,7 @@ public class DaoAlunoo {
         Alunoo objeto = new Alunoo();
         objeto.setSobrenome("Winsch");
         objeto.setNome("Barbara");
+        objeto.setSexo("F");
         
         boolean resultado = inserir(objeto);
         if (resultado) {
@@ -64,4 +69,28 @@ public class DaoAlunoo {
             return false;
         }
     }
+     public static List<Alunoo> consultar() {
+        List<Alunoo> resultados = new ArrayList<>();
+        //editar o SQL conforme a entidade
+        String sql = "SELECT sobrenome, nome, sexo, codigo FROM alunoo";
+        PreparedStatement ps;
+        try {
+            ps = conexao.Conexao.getConexao().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Alunoo objeto = new Alunoo();
+                //definir um set para cada atributo da entidade, cuidado com o tipo
+                objeto.setSobrenome(rs.getString("sobrenome"));
+                objeto.setNome(rs.getString("nome"));
+                objeto.setSexo(rs.getString("sexo"));
+                objeto.setCodigo(rs.getInt("codigo"));
+                
+                resultados.add(objeto);//não mexa nesse, ele adiciona o objeto na lista
+            }
+            return resultados;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+}    
 }

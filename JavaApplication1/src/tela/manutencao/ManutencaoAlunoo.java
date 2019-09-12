@@ -43,7 +43,7 @@ public class ManutencaoAlunoo extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("Manutenção de Alunoo");
+        jLabel1.setText("Manutenção de Aluno");
 
         jLabel2.setText("Nome:");
 
@@ -141,11 +141,11 @@ public class ManutencaoAlunoo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-controlador.ControladorAluno.alterar(this);        // TODO add your handling code here:
+controlador.ControladorAlunoo.alterar(this);        // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-controlador.ControladorAluno.inserir(this);        // TODO add your handling code here:
+controlador.ControladorAlunoo.inserir(this);        // TODO add your handling code here:
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
